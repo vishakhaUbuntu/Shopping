@@ -20,6 +20,7 @@ if($password != '')
 }
 else
   return false;
+
 //$newstr = filter_var($email, FILTER_SANITIZE_STRING);
 //$val = mysqli_real_escape_string($con, $email);
 
