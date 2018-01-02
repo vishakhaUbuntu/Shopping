@@ -1,5 +1,5 @@
 <?php 
-    include_once 'connection.php';
+    //include_once 'connection.php';
     
     /*------------------Get the value of all the variables of a form--------------------*/
     $email = filter_input(INPUT_POST, 'emailLogin');
@@ -11,7 +11,6 @@
     /*------------------Run a query to fetch password for an email id-------------------*/
     $query = $con->query("SELECT * FROM first_table WHERE email = '$email'") or die($con->error);
     $userDetails = $query->fetch_assoc();
-
     /*------------------Check if email id exists or not-------------------*/
     if($userDetails == null){
         return 'No such user exist';
@@ -22,8 +21,8 @@
         $saltFromDB = $userDetails['salt'];
         $password = md5($saltFromDB.$md5UserPass);
         if($password == $userDetails['password']){ 
-            return 'Login Successful';
             $LoginSuccess = true;
+            return 'Login Successful';
         }
         else {
             return 'Typed password does not match';
