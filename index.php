@@ -14,13 +14,20 @@ require './sql/connection.php';
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    $stringVar = require './sql/getFromDatabase.php';
-    alert($stringVar);
-    if($LoginSuccess)
+    if(isset($_POST['Login']))
     {
-        header('Location: amazon.php');
+        $stringVar = require './sql/getFromDatabase.php';
+        echo $stringVar;
+        if($LoginSuccess)
+        {
+            header('Location: ./amazon.php');
+        }
     }
-        
+    
+    if(isset($_POST['Register'])){
+        $stringVar = require './sql/addToDatabase.php';
+        echo $stringVar;
+    }      
 }
 ?>
 <body>
@@ -34,14 +41,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="lname" id="lname" placeholder="Last Name" required></i><br>
         <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="email" id="email" placeholder="Email" required></i><br>
         <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwd" id="passwd" placeholder="Password" required></i><br>
-        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" onclick="return Validate()"/>
+        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Register" onclick="return Validate()"/>
     </form>
     
     <!--Form for login-->
     <form id="login" action='' method="post">
         <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="emailLogin" id="emailLogin" placeholder="Email" required></i><br>
         <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwdLogin" id="passwdLogin" placeholder="Password" required></i><br>
-        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" onclick="return loginValidate()"/>
+        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Login" onclick="return loginValidate()"/>
     </form>
 </div>
    
