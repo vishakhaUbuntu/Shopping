@@ -5,7 +5,6 @@
     $pass = '123456';
     $db = 'test';
     $con = new mysqli($host, $user, $pass, $db) OR die($con->error);
-    //$con = mysqli_connect("localhost","root","123456","test");
 
     // Check connection
     if ($con->connect_errno)

@@ -14,7 +14,8 @@ require './sql/connection.php';
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    require './sql/getFromDatabase.php';
+    $stringVar = require './sql/getFromDatabase.php';
+    alert($stringVar);
     if($LoginSuccess)
     {
         header('Location: amazon.php');
