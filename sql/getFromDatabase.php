@@ -1,20 +1,25 @@
 <?php 
+if(isset($_POST['emailLogin']))
+{
     include_once 'connection.php';
-    
+    session_start();
     /*------------------Get the value of all the variables of a form--------------------*/
-    $email = filter_input(INPUT_POST, 'emailLogin');
-    $password = filter_input(INPUT_POST, 'passwdLogin');
-    
-    /*------------------Initialize a login bool variable--------------------*/
-    $LoginSuccess = false;
-    
-    /*------------------Run a query to fetch password for an email id-------------------*/
-    $query = $con->query("SELECT * FROM first_table WHERE email = '$email'") or die($con->error);
-    $userDetails = $query->fetch_assoc();
+    $email      = filter_input(INPUT_POST, 'emailLogin');
+    $password   = filter_input(INPUT_POST, 'passwdLogin');
+    $rememberMe = $_POST['remember'];
 
-    /*------------------Check if email id exists or not-------------------*/
+    /*------------------Escape the variables before passing in SQL query----------------*/
+    $email = $GLOBALS['$con']->escape_string($email);
+    $password = $GLOBALS['$con']->escape_string($password);
+
+    /*------------------Run a query to fetch password for an email id-------------------*/
+    $query = $GLOBALS['$con']->query("SELECT * FROM first_table WHERE email = '$email'") or die($con->error);
+    $userDetails = $query->fetch_assoc();
+    
+    /*-----------------------Check if email id exists or not----------------------------*/
     if($userDetails == null){
-        return 'No such user exist';
+        $GLOBALS['error'] = 4;   
+        header('location: /PhpDemo/error.php');
     }
     else
     {
@@ -22,11 +27,22 @@
         $saltFromDB = $userDetails['salt'];
         $password = md5($saltFromDB.$md5UserPass);
         if($password == $userDetails['password']){ 
-            return 'Login Successful';
-            $LoginSuccess = true;
+//            $LoginSuccess = true;
+            if(isset($rememberMe))
+            {
+                $_SESSION['userEmail']    = $email;
+                $_SESSION['userPassword'] = $password;
+            }
+            $GLOBALS['error'] = 3;//Login Successful
+            header('location: /PhpDemo/error.php');
         }
         else {
-            return 'Typed password does not match';
+            $GLOBALS['error'] = 4;//Typed password does not match
+            header('location: /PhpDemo/error.php');
         }
     }
+}
+ else {
+    header('location: /PhpDemo/index.php');
+}
 ?>

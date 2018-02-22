@@ -11,9 +11,13 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="./css/welcomePage.css">
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
     <body>
+        <div class="first">
+            <img src="/home/vishakha/Downloads/loading_spinner.gif"/>
+        </div>
+        <div class="second">
         <div class="header"><b>amazon</b><span style="font-size: 50%;padding-top: 15px;padding-bottom: 10px; ">.in</span>
             <button style="margin-left: 10%; width: 50px; height: 10%; margin-top: 8px; padding: 5px">All <i class="fa fa-caret-down" aria-hidden="true"></i></button>
             <input type="text" style="width: 40%; height:10%; margin-top: 8px; padding: 5px" placeholder="Search"> 
@@ -69,7 +73,7 @@ and open the template in the editor.
                 <div style="padding:5%"><br>Sign in for your best experience </div>
                 <button style="background-color:darkorange; border: none; width: 80%; height:30px; margin: auto; margin-top:20%;">Sing In</button>
             </div>
-
+        </div>
             <script>
             var slideIndex = 1;
             showSlides(slideIndex);

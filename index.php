@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require './sql/connection.php';
+session_start();
 ?>
 <html>
 <head>
@@ -9,43 +9,56 @@ require './sql/connection.php';
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./css/login.css">
+<link href="https://bootswatch.com/4/sketchy/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    $stringVar = require './sql/getFromDatabase.php';
-    alert($stringVar);
-    if($LoginSuccess)
-    {
-        header('Location: amazon.php');
-    }
-        
-}
-?>
 <body>
+    <?php
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            require './sql/connection.php';
+            if(isset($_POST['Login']))
+            {
+                require './sql/getFromDatabase.php';
+            }
+
+            if(isset($_POST['Register'])){
+                require './sql/addToDatabase.php';
+            }      
+        }
+    ?>
     <div class="loginDiv">
-    <button id="buttonRegister" onclick="hideLogin();">Register</button>
-    <button id="buttonLogin" onclick="hideRegister();">Login</button>
-    
-    <!--Form for registration-->
-    <form id="register" action='index.php' method="post">
-        <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="fname" id="fname" placeholder="First Name" required></i><br>
-        <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="lname" id="lname" placeholder="Last Name" required></i><br>
-        <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="email" id="email" placeholder="Email" required></i><br>
-        <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwd" id="passwd" placeholder="Password" required></i><br>
-        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" onclick="return Validate()"/>
-    </form>
-    
-    <!--Form for login-->
-    <form id="login" action='' method="post">
-        <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="emailLogin" id="emailLogin" placeholder="Email" required></i><br>
-        <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwdLogin" id="passwdLogin" placeholder="Password" required></i><br>
-        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" onclick="return loginValidate()"/>
-    </form>
+        <div id="buttonDiv">  
+        <button id="buttonRegister" onclick="hideLogin();">Register</button>
+        <button id="buttonLogin" onclick="hideRegister();">Login</button>
+    </div>
+
+    <div id="formDiv">
+        <!--Form for registration-->
+        <form id="register" action='index.php' method="post">
+            <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="fname" id="fname" placeholder="First Name" required></i><br>
+            <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="lname" id="lname" placeholder="Last Name" required></i><br>
+            <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="email" id="email" placeholder="Email" required></i><br>
+            <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwd" id="passwd" placeholder="Password" required></i><br>
+            <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Register" onclick="return Validate()"/>
+        </form>
+
+        <!--Form for login-->
+        <form name="login" id="login" action='' method="post">
+            <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="emailLogin" id="emailLogin" placeholder="Email" required></i><br>
+            <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwdLogin" id="passwdLogin" placeholder="Password" required></i><br>
+            <br><input type="checkbox" name="remember" value="remember">Remember Me
+            <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Login" onclick="return loginValidate()"/>
+        </form>
+    </div>
 </div>
    
 <script>
+    
+    function populateAlert()
+        {
+            document.getElementById("errorDiv").innerHTML = "Error Message";
+        }
     
     function hideRegister()
         {
@@ -97,5 +110,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     } 
             }     
         </script>
+
 </body>
 </html>

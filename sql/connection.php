@@ -4,7 +4,7 @@
     $user = 'root';
     $pass = '123456';
     $db = 'test';
-    $con = new mysqli($host, $user, $pass, $db) OR die($con->error);
+    $GLOBALS['$con'] = new mysqli($host, $user, $pass, $db) OR die($con->error);
 
     // Check connection
     if ($con->connect_errno)
