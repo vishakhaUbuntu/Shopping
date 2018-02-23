@@ -12,6 +12,25 @@ session_start();
 <link href="https://bootswatch.com/4/sketchy/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    if(isset($_POST['Login']))
+    {
+        $stringVar = require './sql/getFromDatabase.php';
+        echo $stringVar;
+        if($LoginSuccess)
+        {
+            header('Location: ./amazon.php');
+        }
+    }
+    
+    if(isset($_POST['Register'])){
+        $stringVar = require './sql/addToDatabase.php';
+        echo $stringVar;
+    }      
+}
+?>
 <body>
     <?php
         if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -51,6 +70,25 @@ session_start();
             <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Login" onclick="return loginValidate()"/>
         </form>
     </div>
+
+    <button id="buttonRegister" onclick="hideLogin();">Register</button>
+    <button id="buttonLogin" onclick="hideRegister();">Login</button>
+    
+    <!--Form for registration-->
+    <form id="register" action='index.php' method="post">
+        <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="fname" id="fname" placeholder="First Name" required></i><br>
+        <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="lname" id="lname" placeholder="Last Name" required></i><br>
+        <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="email" id="email" placeholder="Email" required></i><br>
+        <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwd" id="passwd" placeholder="Password" required></i><br>
+        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Register" onclick="return Validate()"/>
+    </form>
+    
+    <!--Form for login-->
+    <form id="login" action='' method="post">
+        <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="emailLogin" id="emailLogin" placeholder="Email" required></i><br>
+        <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwdLogin" id="passwdLogin" placeholder="Password" required></i><br>
+        <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Login" onclick="return loginValidate()"/>
+    </form>
 </div>
    
 <script>

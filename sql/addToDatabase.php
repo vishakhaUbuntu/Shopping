@@ -1,6 +1,6 @@
 <?php
-//include_once 'connection.php';
 require __DIR__ . '/../validations/phpValidations.php'; 
+
 /*------------------Get the value of all the variables of a form--------------------*/
 $first_name = filter_input(INPUT_POST, 'fname');
 $last_name = filter_input(INPUT_POST, 'lname');
@@ -34,6 +34,20 @@ if(checkForStrings($first_name) && checkForStrings($last_name) && checkForEmails
          header('Location: /PhpDemo/error.php');
 //        echo "Errormessage: ". $con->error;
 //        return "Unable to register";
+      }
+
+      $full_name = $con->real_escape_string($full_name);
+      $email = $con->real_escape_string($email);
+
+    /*------------------Add the data to the db after all the validations--------------------*/  
+      $query = $con->query("INSERT INTO first_table (name,email,password,salt) 
+                VALUES ('$full_name','$email','$finalMD5','$salt')");
+      if($query){
+        return "Registered Successfully!";
+      }
+      else {
+        echo "Errormessage: ". $con->error;
+        return "Unable to register";
       }
 }
 ?>

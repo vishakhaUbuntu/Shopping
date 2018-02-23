@@ -3,6 +3,7 @@ if(isset($_POST['emailLogin']))
 {
     include_once 'connection.php';
     session_start();
+
     /*------------------Get the value of all the variables of a form--------------------*/
     $email      = filter_input(INPUT_POST, 'emailLogin');
     $password   = filter_input(INPUT_POST, 'passwdLogin');
@@ -17,6 +18,7 @@ if(isset($_POST['emailLogin']))
     $userDetails = $query->fetch_assoc();
     
     /*-----------------------Check if email id exists or not----------------------------*/
+
     if($userDetails == null){
         $GLOBALS['error'] = 4;   
         header('location: /PhpDemo/error.php');
@@ -35,6 +37,8 @@ if(isset($_POST['emailLogin']))
             }
             $GLOBALS['error'] = 3;//Login Successful
             header('location: /PhpDemo/error.php');
+            $LoginSuccess = true;
+            return 'Login Successful';
         }
         else {
             $GLOBALS['error'] = 4;//Typed password does not match
