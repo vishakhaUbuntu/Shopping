@@ -13,7 +13,7 @@
                         echo '<h1 style="">Success!!</h1>';
                         echo "Registered Successfully!";
                         echo '<a href="amazon.php">Proceed</a>';
-                        break;
+                        break; 
                     }
                     case 2:{
                         echo '<h1 style="">Error</h1>';
