@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include_once 'index.php';
+?>
 <html>
 <head>
   <title>Error</title>
@@ -7,8 +10,8 @@
     <div style="text-align: center; background-color: turquoise; padding-left: 5%;padding-right: 5%; position: absolute; size: 300px; top: 45%; left: 45%">
         <p style="color: purple">
             <?php  
-            echo $GLOBALS['error'];
-                switch ($error){
+            echo $GLOBALS["error"];
+                switch ($GLOBALS["error"]){
                     case 1:{
                         echo '<h1 style="">Success!!</h1>';
                         echo "Registered Successfully!";
@@ -28,9 +31,8 @@
                         break;
                     }
                     case 4:{
-                        echo '<h1 style="">Alert!!</h1>';
+                        echo '<h1>Alert!!</h1>';
                         echo "Typed password does not match";
-                        $GLOBALS['error'] = 5;
                         echo '<a href="index.php">Try Again</a>';
                         break;
                     }
