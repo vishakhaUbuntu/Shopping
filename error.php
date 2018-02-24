@@ -4,7 +4,7 @@ include_once 'index.php';
 ?>
 <html>
 <head>
-  <title>Error</title>
+  <title>Error page added</title>
 </head>
 <body>
     <div style="text-align: center; background-color: turquoise; padding-left: 5%;padding-right: 5%; position: absolute; size: 300px; top: 45%; left: 45%">
@@ -16,7 +16,7 @@ include_once 'index.php';
                         echo '<h1 style="">Success!!</h1>';
                         echo "Registered Successfully!";
                         echo '<a href="amazon.php">Proceed</a>';
-                        break;
+                        break; 
                     }
                     case 2:{
                         echo '<h1 style="">Error</h1>';
