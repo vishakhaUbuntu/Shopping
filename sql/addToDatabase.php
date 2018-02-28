@@ -26,14 +26,12 @@ if(checkForStrings($first_name) && checkForStrings($last_name) && checkForEmails
       $query = $GLOBALS['$con']->query("INSERT INTO first_table (full_name,email,password,salt) 
                 VALUES ('$full_name','$email','$finalMD5','$salt')");
       if($query){
-         $GLOBALS['error'] = "1";  //Registered Successfully!
+         $_SESSION['error'] = "1";  //Registered Successfully!
          header('Location: /PhpDemo/error.php');
       }
       else {
-         $GLOBALS['error'] = "2";//Unable to register
+         $_SESSION['error'] = "2";//Unable to register
          header('Location: /PhpDemo/error.php');
-//        echo "Errormessage: ". $con->error;
-//        return "Unable to register";
       }
 }
 ?>

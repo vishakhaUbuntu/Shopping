@@ -1,115 +1,142 @@
 <!DOCTYPE html>
-<?php
-session_start();
-?>
 <html>
-<head>
-<title>Shopping</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="./css/login.css">
-<link href="https://bootswatch.com/4/sketchy/bootstrap.min.css" rel="stylesheet" type="text/css">
-</head>
+    <head>
+        <title>Some New Page Rechanged</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/welcomePage.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    </head>
+    <body>
+<!--        <div class="first">
+            <img src="/home/vishakha/Downloads/loading_spinner.gif"/>
+        </div>-->
+        <div class="second">
+        <div class="header"><b>amazon</b><span style="font-size: 50%;padding-top: 15px;padding-bottom: 10px; ">.in</span>
+            <button style="margin-left: 10%; width: 50px; height: 10%; margin-top: 8px; padding: 5px">All <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+            <input type="text" style="width: 40%; height:10%; margin-top: 8px; padding: 5px" placeholder="Search"> 
+            <button style="background-color:darkorange; width:50px ;border: none; height: 10%; margin-top: 8px; padding: 5px; font-size: 0.6em;" class="fa fa-search"></button>
+        </div>
+        <div class="header">
+            <div class="dropdown">
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 8px; padding: 5px; text-align: left; color: white">Shop By <br><b>Categories</b> <i class="fa fa-caret-down" style="color: white;"></i></button>
+            <div class="dropdown-content">
+            </div>
+            </div>
+            
+            <button style="background-color:transparent; border: none; margin-left: 11%; height: 10%; margin-top: 21px; padding: 2px; color:white">Your Amazon.in</button>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 21px; padding: 2px; color:white">Today's Deals</button>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 21px; padding: 2px; color:white">Amazon pay</button>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 21px; padding: 2px; color:white">Sell</button>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 21px; padding: 2px; color:white">Customer Service</button>
+        
+            <?php
+            session_start();
+            echo $_SESSION['userEmail'];
+            if(isset($_SESSION['userEmail'])){
+                
+                echo '<button style="background-color:transparent; border: none; margin-left: 12%; height: 10%; margin-top: 8px; padding: 5px; text-align: left; color: white">Hello '. $_SESSION["userName"].'<br><b>Your Orders</b> <i class="fa fa-caret-down" style="color: white;"></i></button>';
+            }
+            else{
+                echo '<button style="background-color:transparent; border: none; margin-left: 12%; height: 10%; margin-top: 8px; padding: 5px; text-align: left; color: white">Hello<a href="login.php">Sign In</a><br><b>Your Orders</b> <i class="fa fa-caret-down" style="color: white;"></i></button>';
+            }
+            ?>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 8px; padding: 5px; text-align: left; color: white">Try<br><b>Prime</b> <i class="fa fa-caret-down" style="color: white;"></i></button>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 8px; padding: 5px; text-align: left; color: white">Your<br><b>Lists</b> <i class="fa fa-caret-down" style="color: white;"></i></button>
+            <button style="background-color:transparent; border: none; margin-left: 10px; height: 10%; margin-top: 8px; padding: 5px; text-align: left; color: white; font-size: 0.9em;"><i class="fa fa-shopping-cart" style="color: white;"></i><span style="font-size: 0.5em"><b>Cart</b></span></button>
+        </div>
+        
+            <div class="slideshow-container">
 
-<body>
-    <?php
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            require './sql/connection.php';
-            if(isset($_POST['Login']))
-            {
-                require './sql/getFromDatabase.php';
+            <div class="mySlides fade">
+              <img src="/home/vishakha/Downloads/banner.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+              <img src="/home/vishakha/Downloads/stadium.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+              <img src="/home/vishakha/Downloads/note8.jpg" style="width:100%">
+            </div>
+                
+            <div class="mySlides fade">
+              <img src="/home/vishakha/Downloads/movie.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+              <img src="/home/vishakha/Downloads/22.jpg" style="width:100%">
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        
+        
+<!--            <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px">
+                <div style="padding:10%"> <b>WELCOME</b> </div>
+                <div style="padding:5%"><br>Sign in for your best experience </div>
+                <button style="background-color:darkorange; border: none; width: 80%; height:30px; margin: auto; margin-top:20%;">Sing In</button>
+            </div>-->
+            <div style="display: flex; flex-wrap: wrap;">
+            <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>APPLIANCES</b><br> </div>
+                <a href="appliances.php">Click Here<br></a>
+            </div>
+            <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>CLOTHING</b><br> </div>
+                <a href="clothing.php">Click Here<br></a>
+            </div>
+            <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>SHOES</b><br> </div>
+                <a href="shoes.php">Click Here<br></a>
+            </div>
+                <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>ACCESSORIES</b><br> </div>
+                <a href="accessories.php">Click Here<br></a>
+            </div>
+                <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>MOBILES</b><br> </div>
+                <a href="mobil.php">Click Here<br></a>
+            </div>
+                <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>HOUSEHOLD</b><br> </div>
+                <a href="household.php">Click Here<br></a>
+            </div>
+                <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>FURNITURE</b><br> </div>
+                <a href="furniture.php">Click Here<br></a>
+            </div> 
+                <div style="width: 20%; background-color: #f6eaea; text-align: center;padding-bottom: 10px; margin: 5px">
+                <div style="padding:10%"> <b>COSMETICS</b><br> </div>
+                <a href="cosmetics.php">Click Here<br></a>
+            </div>
+                
+        </div>
+        </div>
+            <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
             }
 
-            if(isset($_POST['Register'])){
-                require './sql/addToDatabase.php';
-            }      
-        }
-    ?>
-    <div class="loginDiv">
-        <div id="buttonDiv">  
-        <button id="buttonRegister" onclick="hideLogin();">Register</button>
-        <button id="buttonLogin" onclick="hideRegister();">Login</button>
-    </div>
-
-    <div id="formDiv">
-        <!--Form for registration-->
-        <form id="register" action='index.php' method="post">
-            <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="fname" id="fname" placeholder="First Name" required></i><br>
-            <i class="fa fa-user-o" style="color: turquoise" aria-hidden="true"><input type="text" name="lname" id="lname" placeholder="Last Name" required></i><br>
-            <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="email" id="email" placeholder="Email" required></i><br>
-            <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwd" id="passwd" placeholder="Password" required></i><br>
-            <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Register" onclick="return Validate()"/>
-        </form>
-
-        <!--Form for login-->
-        <form name="login" id="login" action='' method="post">
-            <i class="fa fa-envelope" style="color: turquoise" aria-hidden="true"><input type="text" name="emailLogin" id="emailLogin" placeholder="Email" required></i><br>
-            <i class="fa fa-key" style="color: turquoise" aria-hidden="true"><input type="password" name="passwdLogin" id="passwdLogin" placeholder="Password" required></i><br>
-            <br><input type="checkbox" name="remember" value="remember">Remember Me
-            <br><input class="submit" type="submit" style="background-color: turquoise;height: 35px;" value="Submit" name="Login" onclick="return loginValidate()"/>
-        </form>
-    </div>
-</div>
-   
-<script>
-    
-    function populateAlert()
-        {
-            document.getElementById("errorDiv").innerHTML = "Error Message";
-        }
-    
-    function hideRegister()
-        {
-            document.getElementById("register").style.display="none";
-            document.getElementById("login").style.display="block";
-        }
-        
-    function hideLogin()
-        {
-            document.getElementById("register").style.display="block";
-            document.getElementById("login").style.display="none";
-        }
-        
-    function Validate()
-        {
-            var letters = "[a-zA-Z][a-zA-Z\s]*";
-            var password = "[a-zA-Z0-9][^\w\s]*";
-            var firstName = document.getElementById("fname").value;
-            var lastName = document.getElementById("lname").value;
-            if(!(/^[a-zA-Z]*$/g.test(firstName)) || !(/^[a-zA-Z]*$/g.test(lastName)))
-                {
-                    alert ("Invalid name format");
-                    return false;
-                }
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("email").value) === false)
-                {  
-                    alert("You have entered an invalid email address!")  
-                    return false;
-                }  
-            if (!(password.test(document.getElementById("passwd").value)))  
-                {  
-                    alert("You have entered an invalid password!");  
-                    return false;
-                }    
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
             }
-           
-           function loginValidate()
-            {
-                var password = "[a-zA-Z0-9][^\w\s]*";
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("emailLogin").value) === false)
-                    {  
-                        alert("You have entered an invalid email address!")  
-                        return false;
-                    }
-                if (!(password.test(document.getElementById("passwdLogin").value)))  
-                    {  
-                        alert("You have entered an invalid password!");  
-                        return false;
-                    } 
-            }     
-        </script>
 
-</body>
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              //var dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";  
+              }
+              slides[slideIndex-1].style.display = "block";  
+            }
+            </script>
+    </body>
 </html>

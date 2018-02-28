@@ -18,7 +18,7 @@ if(isset($_POST['emailLogin']))
     
     /*-----------------------Check if email id exists or not----------------------------*/
     if($userDetails == null){
-        $GLOBALS['error'] = 4;   
+        $_SESSION['error'] = 4; 
         header('location: /PhpDemo/error.php');
     }
     else
@@ -27,17 +27,18 @@ if(isset($_POST['emailLogin']))
         $saltFromDB = $userDetails['salt'];
         $password = md5($saltFromDB.$md5UserPass);
         if($password == $userDetails['password']){ 
-//            $LoginSuccess = true;
+//          $LoginSuccess = true;
             if(isset($rememberMe))
             {
                 $_SESSION['userEmail']    = $email;
                 $_SESSION['userPassword'] = $password;
             }
-            $GLOBALS['error'] = 3;//Login Successful
+            $_SESSION['userName'] = explode(" ", $userDetails['full_name'])[0];
+            $_SESSION['error'] = 3;//Login Successful
             header('location: /PhpDemo/error.php');
         }
         else {
-            $GLOBALS['error'] = 4;//Typed password does not match
+            $_SESSION['error'] = 4;//Typed password does not match
             header('location: /PhpDemo/error.php');
         }
     }
